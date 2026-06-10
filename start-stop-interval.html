@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>...</title>
+</head>
+<body>
+    <h1>Chai aur Javascript</h1>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        /*
+        TASK 1
+        When the user clicks on the "Start" button, start logging "JS" and print date-time to the console every second.
+
+        When the user clicks on the "Stop" button, stop logging.
+        */
+       const start = document.querySelector('#start')
+       const end = document.querySelector('#stop')
+       let startTime;
+
+
+
+       start.addEventListener('click', function(){
+            if(!startTime){
+                startTime = setInterval(function(){
+            console.log('JS',Date())
+       } , 1000)
+            }
+       })
+       end.addEventListener('click', function(){
+       clearInterval(startTime) 
+       console.log("Stopped!")
+       startTime = undefined
+       })
+
+    </script>
+</body>
+</html>

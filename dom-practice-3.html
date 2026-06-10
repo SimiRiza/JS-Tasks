@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DOM Practice</title>
+</head>
+<body style="background:#212121;color:white;">
+
+    <h1 id="title">Programming Languages</h1>
+
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+
+    <script>
+
+        /*
+        TASK 1
+        Add the following languages dynamically:
+
+        Python
+        TypeScript
+        Java
+        Go
+
+        Use createElement + createTextNode
+        */
+        const ul = document.querySelector('.language');
+
+        const li1 = document.createElement('li');
+        li1.appendChild(document.createTextNode('Python'));
+        ul.appendChild(li1);
+
+        const li2 = document.createElement('li');
+        li2.appendChild(document.createTextNode('TypeScript'));
+        ul.appendChild(li2);
+
+        const li3 = document.createElement('li');
+        li3.appendChild(document.createTextNode('Java'));
+        ul.appendChild(li3);
+
+        const li4 = document.createElement('li');
+        li4.appendChild(document.createTextNode('Go'));
+        ul.appendChild(li4);
+
+
+        /*
+        TASK 2
+        Change the second language to:
+
+        C++
+
+        Do NOT use innerHTML.
+        Use replaceWith().
+        */
+        const list = document.querySelector('.language');
+
+        const sec_ele = list.children[1];
+
+        const li5 = document.createElement('li');
+        li5.appendChild(document.createTextNode('C++'));
+
+        sec_ele.replaceWith(li5);
+
+
+        /*
+        TASK 3
+        Change the first language to:
+
+        Rust
+
+        Use outerHTML.
+        */
+        const firstLang = list.children[0];
+        firstLang.outerHTML = '<li>Rust</li>';
+
+
+        /*
+        TASK 4
+        Remove the last language.
+        */
+        const lastLang = list.lastElementChild;
+        lastLang.remove();
+
+
+        /*
+        TASK 5
+        Select the UL.
+
+        Print:
+        - total children
+        - first child text
+        - last child text
+        */
+        console.log("Total Children:", list.children.length);
+        console.log("First Child:", list.firstElementChild.textContent);
+        console.log("Last Child:", list.lastElementChild.textContent);
+
+
+        /*
+        TASK 6
+        Make the second language text color orange.
+        */
+        list.children[1].style.color = "orange";
+
+
+        /*
+        TASK 7
+        Create a new DIV dynamically.
+
+        Requirements:
+
+        class = "card"
+        id = "card1"
+        title = "language-card"
+
+        background = green
+        padding = 10px
+
+        text = "DOM Master"
+
+        Append it to body.
+        */
+        const div = document.createElement('div');
+
+        div.className = "card";
+        div.id = "card1";
+        div.setAttribute("title", "language-card");
+
+        div.style.backgroundColor = "green";
+        div.style.padding = "10px";
+
+        div.appendChild(document.createTextNode("DOM Master"));
+
+        document.body.appendChild(div);
+
+
+        /*
+        TASK 8
+        Print to console:
+
+        parent element of first LI
+        next sibling of first LI
+        */
+        const firstLI = list.firstElementChild;
+
+        console.log("Parent:", firstLI.parentElement);
+        console.log("Next Sibling:", firstLI.nextElementSibling);
+
+
+        /*
+        TASK 9 (Interview Favorite)
+
+        Difference between:
+
+        textContent
+        innerText
+        innerHTML
+
+        textContent:
+        - Returns all text inside an element.
+        - Includes hidden text.
+        - Faster.
+
+        innerText:
+        - Returns only visible text.
+        - Respects CSS styling.
+        - Slightly slower.
+
+        innerHTML:
+        - Returns complete HTML inside the element.
+        - Includes tags.
+        - Can also be used to insert HTML.
+        */
+
+    </script>
+
+</body>
+</html>
