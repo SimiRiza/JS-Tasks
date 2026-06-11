@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Date Logger</title>
+</head>
+<body>
+
+    <!--
+    Mini Project: JS Date Logger
+
+    Problem:
+    When the Start button is clicked, print "JS" along with the
+    current date and time to the console every second.
+
+    When the Stop button is clicked, stop the logging process.
+    -->
+
+    <h1>JS Date Logger</h1>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        const start = document.querySelector('#start')
+        const end = document.querySelector('#stop')
+
+        let startTime
+
+        // Start logging every second
+        start.addEventListener('click', function () {
+
+            // Prevent multiple intervals from running
+            if (!startTime) {
+
+                startTime = setInterval(function () {
+                    console.log('JS', Date())
+                }, 1000)
+
+            }
+        })
+
+        // Stop logging
+        end.addEventListener('click', function () {
+
+            clearInterval(startTime)
+
+            console.log('Stopped!')
+
+            startTime = undefined
+        })
+    </script>
+
+</body>
+</html>

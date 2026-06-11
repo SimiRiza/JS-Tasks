@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Background Color Changer</title>
+</head>
+<body>
+
+    <!--
+    Mini Project: Random Background Color Changer
+
+    Problem:
+    When the Start button is clicked, change the background color
+    of the page to a random hexadecimal color every second.
+
+    When the Stop button is clicked, stop changing the color.
+    -->
+
+    <h1>Random Background Color Changer</h1>
+
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        const start = document.querySelector('#start')
+        const end = document.querySelector('#stop')
+
+        let changeColor
+
+        // Generate a random hexadecimal color
+        const rancolor = function () {
+
+            let color = "#"
+            let hex = "0123456789ABCDEF"
+
+            for (let i = 0; i < 6; i++) {
+                color += hex[Math.floor(Math.random() * 16)]
+            }
+
+            return color
+        }
+
+        // Start changing background color every second
+        start.addEventListener('click', function () {
+
+            const bg = document.body
+
+            // Prevent multiple intervals from running
+            if (!changeColor) {
+
+                changeColor = setInterval(function () {
+                    bg.style.backgroundColor = rancolor()
+                }, 1000)
+
+            }
+        })
+
+        // Stop changing background color
+        end.addEventListener('click', function () {
+
+            clearInterval(changeColor)
+
+            changeColor = null
+        })
+    </script>
+
+</body>
+</html>
