@@ -1,0 +1,108 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Activity Dashboard</title>
+</head>
+<body>
+
+    <h1>Keyboard Activity Dashboard</h1>
+
+    <div id="dashboard">
+        <p>Last Key: <span id="lastKey">-</span></p>
+        <p>Code: <span id="code">-</span></p>
+        <p>KeyCode: <span id="keyCode">-</span></p>
+        <p>Total Presses: <span id="count">0</span></p>
+        <p>Caps Lock: <span id="caps">-</span></p>
+        <p>Ctrl: <span id="ctrl">-</span></p>
+        <p>Shift: <span id="shift">-</span></p>
+        <p>Alt: <span id="alt">-</span></p>
+        <p>Recent Shortcut: <span id="shortcut">-</span></p>
+
+        <p>Recent Keys:</p>
+        <ul id="history"></ul>
+    </div>
+
+    <script>
+
+        const lastKey = document.getElementById('lastKey');
+        const code = document.getElementById('code');
+        const keyCode = document.getElementById('keyCode');
+        const count = document.getElementById('count');
+        const caps = document.getElementById('caps');
+        const ctrl = document.getElementById('ctrl');
+        const shift = document.getElementById('shift');
+        const alt = document.getElementById('alt');
+        const shortcut = document.getElementById('shortcut');
+        const history = document.getElementById('history');
+
+        let totalPresses = 0;
+        let recentKeys = [];
+
+        window.addEventListener('keydown', function (e) {
+
+            totalPresses++;
+
+            // Task 1: Show last key pressed
+            lastKey.innerText = e.key === ' ' ? 'Space' : e.key;
+
+            // Task 2: Show code and keyCode
+            code.innerText = e.code;
+            keyCode.innerText = e.keyCode;
+
+            // Task 3: Count total key presses
+            count.innerText = totalPresses;
+
+            // Task 4: Detect Ctrl, Shift and Alt
+            ctrl.innerText = e.ctrlKey ? 'True' : 'False';
+            shift.innerText = e.shiftKey ? 'True' : 'False';
+            alt.innerText = e.altKey ? 'True' : 'False';
+
+            // Task 5: Detect Caps Lock
+            caps.innerText = e.getModifierState('CapsLock')
+                ? 'Caps On'
+                : 'Caps Off';
+
+            // Task 6: Store recent keys
+            recentKeys.push(e.key === ' ' ? 'Space' : e.key);
+
+            if (recentKeys.length > 10) {
+                recentKeys.shift();
+            }
+
+            // Task 7: Update key history
+            history.innerHTML = '';
+
+            for (let i = 0; i < recentKeys.length; i++) {
+                const li = document.createElement('li');
+                li.innerText = recentKeys[i];
+                history.appendChild(li);
+            }
+
+            // Task 8: Detect shortcuts
+            if (e.ctrlKey && e.key === 'c') {
+                shortcut.innerText = 'Ctrl + C Shortcut detected';
+            }
+
+            if (e.ctrlKey && e.key === 'v') {
+                shortcut.innerText = 'Ctrl + V Shortcut detected';
+            }
+
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                shortcut.innerText = 'Ctrl + S Shortcut detected';
+            }
+
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'p') {
+                e.preventDefault();
+                shortcut.innerText = 'Ctrl + Shift + P Shortcut detected';
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+```
